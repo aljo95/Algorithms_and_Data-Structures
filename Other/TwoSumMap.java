@@ -14,11 +14,11 @@ public class TwoSumMap {
         Map<Integer, Integer> arrValues = new HashMap<>();
         int i = 0;
         while(i < nums.length) {
-            int difference = target - nums[i];                    // 1. 7=9-2,    2. 2=9-7
+            int difference = target - nums[i];                    // loop #1. difference=7=9-2,    loop #2. difference=2=9-7
             if (arrValues.containsKey(difference)) {
                 return new int[] {arrValues.get(difference), i};  // return {0, 1}, map.get(key) returns value
             }
-            arrValues.put(nums[i], i);  //store key-value pairs  ->  ArrayValue-ArrayIndex 
+            arrValues.put(nums[i], i);  // store key-value pairs  ->  ArrayValue-ArrayIndex 
             i++;                        
         }
             return new int[] {};
