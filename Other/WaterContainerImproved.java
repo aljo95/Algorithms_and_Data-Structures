@@ -1,8 +1,13 @@
+/*
+ * Improved Water Container problem from https://leetcode.com/problems/container-with-most-water/
+ * Single loop, O(n) linear time
+*/
+
 
 public class WaterContainerImproved {
 
     public static void main(String[] args) {
-        int[] height = {1,8,6,2,5,4,8,3,7};
+        int[] height = {1,8,6,2,5,4,8,3,7}; 
         //int [] height = {1, 1};
         System.out.println(maxArea(height));
     }
@@ -21,10 +26,7 @@ public class WaterContainerImproved {
                 max = Math.max(max, height[l] * (r-l));
                 l++;
             }
-
-            System.out.println(max);
         }
-
         return max;
     }
 }
