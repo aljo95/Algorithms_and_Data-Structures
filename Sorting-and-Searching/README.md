@@ -1,1 +1,1 @@
-### A look at sorting and unsorted searching. Comparing a basic iterative search vs a binary search.
+### A look at sorted and unsorted searching. Comparing a basic iterative search vs seraching through sorted arrays vs binary search.
