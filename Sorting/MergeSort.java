@@ -9,33 +9,18 @@ public class MergeSort {
         sort(org, aux, 0, org.length-1);
     }
 
-
-
-
-
-
-    // SORT
     public static void sort(int[] org, int[]aux, int lo, int hi) {
 
-        if (lo != hi) {                         // ([4, 3], auxLength, 0, 1)
+        if (lo != hi) {  
             int mid = (lo+hi)/2;    
 
-            //sort first and second halves      // ALL OF THESE HAPPEN BEFORE THE MERGE FUNCTION!
-            sort(org, aux, lo, mid);            // org, aux, 0, 0
-            sort(org, aux, mid+1, hi);          // org, aux, 1, 1
+            sort(org, aux, lo, mid);    
+            sort(org, aux, mid+1, hi); 
 
-            //merge                             // Will go "opposite order than sort"
-            merge(org, aux, lo, mid, hi);       // 1: org, aux, 0, 0, 1
+            //merge                          
+            merge(org, aux, lo, mid, hi); 
         }
     }
-
-
-
-
-
-
-
-
 
     // MERGE
     public static void merge(int[] org, int[] aux, int lo, int mid, int hi) {
@@ -44,69 +29,34 @@ public class MergeSort {
         for (int i=0; i<org.length; i++) {
             aux[i] = org[i];
         }
+        
+        int i = lo;              
+        int j = mid+1;     
 
-
-        //checking arrays
-        /* 
-        for(int i=0; i<aux.length; i++) {
-            System.out.print(org[i]);
-        }
-        System.out.print(" values: " + lo + mid + hi);   
-        System.out.println();
-        */
-
-
-
-        // merging time
-        int i = lo;         //index first part                  
-        int j = mid+1;      //index second part
-
-        //for all indices from lo to hi             //1: [2, 0, 3, 1], lo=0, mid=0, hi=1
-        for (int k=lo; k<=hi; k++) {                //so we are sotring 2, 0 -> 0, 2
+        for (int k=lo; k<=hi; k++) {    
             if (i > mid) {
-                org[k] = aux[j];                    //2: [0, 2, 3, 1], lo=2, mid=2, hi=3    i=2, j=3
-                j++;                                //  -> [0, 2, 1, 3]
+                org[k] = aux[j];            
+                j++;       
             }
-            else if (j > hi) {                      //last time?: [0, 2, 1, 3], lo=0, mid=1, hi=3     i=0, j=2
+            else if (j > hi) {    
                 org[k] = aux[i];
                 i++;
             } 
-            else if (aux[i] < aux[j]) {             //last 1.   i -> 1, k -> 1 [0, ...]
-                org[k] = aux[i];                    //last 3.   i -> 2, k -> 3 [0, 1, 2, X]
+            else if (aux[i] < aux[j]) {             
+                org[k] = aux[i];    
                 i++;
             }
-            else if (aux[i] > aux[j]){              //last 2.   j -> 3, k -> 2 [0, 1, ...]
+            else if (aux[i] > aux[j]){  
                 org[k] = aux[j];
                 j++;
             }
-        }                                           //last 4. '(i > mid)' -> org[3] = aux[3] -> org[3] = 3
+        }                                          
 
-    }                                               // DONE ! 
+    }                                               
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Generate UNIQUE random numbers for array of length n. Numbers are in range 0 to n*10 (excluded)
+    // Generate UNIQUE random numbers for array of length n. Numbers are in range 0 to n*10 (excluded)
     private static int[] unsorted(int n) { 
+
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i=0; i<n; i++) list.add(i);
         Collections.shuffle(list);
@@ -117,8 +67,8 @@ public class MergeSort {
         return randomArray;
     }
 
-    private static void printArray(int arr[])
-    {
+    private static void printArray(int arr[]) {
+
         int n = arr.length;
         for (int i=0; i<n; ++i)
             System.out.print(arr[i]+" ");
@@ -126,14 +76,6 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-
-/* 
-        int[] arr = unsorted(100);
-        printArray(arr);
-        sort(arr);
-        printArray(arr);
-*/
-
         
         double result = 0;
         for (int i = 100; i <= 1600; i += 100) {
@@ -148,14 +90,6 @@ public class MergeSort {
                 if (result < min) min = result;
             }
             System.out.println(i + " " + min);
-
         }
-
-
-
-
-
-
-
     }
 }
