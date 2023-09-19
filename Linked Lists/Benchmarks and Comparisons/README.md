@@ -1,0 +1,1 @@
+Linked list with common methods. Comparing appending times of list against arrays with a singly linked list and a doubly linked list
