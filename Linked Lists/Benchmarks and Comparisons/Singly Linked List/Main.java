@@ -13,19 +13,16 @@ public class Main {
     public static int[] arrayAppend(int[] a, int[] b) {
         
         int totalLength = a.length + b.length;
-        int[] totalArray = new int[totalLength];        //a=[1, 2, 3]
-        
-        System.arraycopy(a, 0, totalArray, 0, a.length);
-        System.arraycopy(b, 0, totalArray, a.length, b.length);
-        
-        /*
-        for (int i=0; i<a.length; i++) {                //b=[4, 5, 6]
-            totalArray[i] = a[i];                       //tot=[length=6]
+        int[] totalArray = new int[totalLength];
+        int indx = 0;
+        for (int item: a) {
+            totalArray[indx] = item;
+            indx++;
         }
-        
-        for (int i=0; i<b.length; i++) {
-            totalArray[a.length+i] = b[i];
-        }*/
+        for (int item: b) {
+            totalArray[indx] = item;
+            indx++;
+        }
         return totalArray;
     }
     
@@ -69,38 +66,56 @@ public class Main {
         System.out.println(linkedList.getValue(2));
         //System.out.println(linkedList.getValue(3));
         
+        //STACK TESTING!
+        System.out.println("##--------------------##");
+        LinkedList stackList = new LinkedList(0);
+        stackList.push(1);
+        stackList.push(2);
+        stackList.push(3);
+        //stackList.add(1);
+        //stackList.add(2);
+        stackList.pop();
+        stackList.pop();
+        System.out.println(stackList.getValue(0));  // with push=1 with add=2
+        //System.out.println(stackList.getValue(1));  // with push=2 with add=1
+        //System.out.println(stackList.getValue(2));
+        System.out.println("Length: " + stackList.length());
+        System.out.println("##--------------------##");
         
-        System.out.println("---------------------");
-        
-        
-        //whit my new awesome method
-        System.out.println(linkedList.length());
-        System.out.println(list_to_append.length());
-
-        System.out.println(linkedList.getValue(0)); //30
-        System.out.println(linkedList.getValue(1)); //20
-        System.out.println(linkedList.getValue(2)); //10
-        
-         System.out.println("---------------------");
-         System.out.println("---------------------");
-        int[] aa = {1, 2, 3};
-        int[] bb = {4, 5, 6, 7};
-        int[] res = arrayAppend(aa, bb);
-        for (int i=0; i<res.length; i++) {
-            System.out.println(res[i]);
+        int[] arr1 = {1, 2, 3};
+        int[] arr2 = {4, 5, 6, 7};
+        int[] resArr = arrayAppend(arr1, arr2);
+        for (int item: resArr) {
+            System.out.print(item + ", ");
         }
-         System.out.println("---------------------");
-         System.out.println("---------------------");
+        System.out.println();
         
-        System.out.println("---------------------");
-        linkedList.append(list_to_append);
-        System.out.println(linkedList.search(4));
-        linkedList = new LinkedList(3);
-        System.out.println(linkedList.search(4));
         
-        /*
+        
+        
         // TESTING TIME!
+        // Appending arrays
+        /*
         System.out.println("---------------------");
+        System.out.println("TESTING ARRAY START!");
+        for (int i = 100; i <= 1600; i = i + 100) {
+            double min = Double.MAX_VALUE;
+            for (int k = 0; k < 10000; k ++) {
+                int[] a = new int[i];
+                int[] b = new int[100];
+                long t0 = System.nanoTime();
+                arrayAppend(a, b);
+                long t1= System.nanoTime();
+                double result = (t1 - t0);
+                if (result < min) min = result;
+            }
+            System.out.println(i + " " + min);
+        }
+        System.out.println("TESTING ARRAY END");
+        System.out.println("---------------------");
+        */
+        
+        //append list
         for (int i = 100; i <= 1600; i = i + 100) {
             double min = Double.MAX_VALUE;
             for (int k = 0; k < 10000; k ++) {
@@ -114,20 +129,48 @@ public class Main {
             }
             System.out.println(i + " " + min);
         }
-        */
         
-        System.out.println("---------------------");
         
-        for (int i = 1300; i <= 1600; i = i + 100) {
+        // building list time
+        
+        for (int i = 2000; i <= 10000; i = i + 2000) {
             double min = Double.MAX_VALUE;
-            for (int k = 0; k < 1000; k ++) {
+            for (int k = 0; k < 10000; k ++) {
                 long t0 = System.nanoTime();
-                int[] arr = arrayAllocate(i);
+                LinkedList testList = new LinkedList(i);
                 long t1= System.nanoTime();
                 double result = (t1 - t0);
                 if (result < min) min = result;
             }
             System.out.println(i + " " + min);
         }
+        
+        
+        
+        
+        
+        /*
+        for (int i = 2000; i <= 10000; i = i + 2000) {
+            double min = Double.MAX_VALUE;
+            for (int k = 0; k < 10000; k ++) {
+                long t0 = System.nanoTime();
+                    int[] arr = arrayAllocate(i);
+                long t1= System.nanoTime();
+                double result = (t1 - t0);
+                if (result < min) min = result;
+            }
+            System.out.println(i + " " + min);
+        }
+        /*
+        double min = Double.MAX_VALUE;
+        for (int k = 0; k < 10000; k++) {
+            long t0 = System.nanoTime();
+            int[]arr = arrayAllocate(6000);
+            long t1 = System.nanoTime();
+            double result = (t1 - t0);
+            if (result < min) min = result;
+        }
+        System.out.println("200 " + min);
+        */
     }
 }
