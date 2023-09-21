@@ -1,1 +1,1 @@
-Linked list with common methods. Comparing appending times of list against arrays with a singly linked list and a doubly linked list
+Linked lists with common methods. Comparing some runtimes of singly linked lists against arrays, and singly linked lists against a doubly linked lists.
