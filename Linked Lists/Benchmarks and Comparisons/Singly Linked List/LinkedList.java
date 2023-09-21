@@ -75,6 +75,9 @@ public class LinkedList {
         return false;
     }
     
+    
+    
+    
     // DELETE A CELL
     public void remove(int item) {
         Cell next = this.first.tail;       // [1 > 2 > 3]
@@ -92,9 +95,12 @@ public class LinkedList {
             }
             previous = next;
             next = next.tail;
-            
         }
     }
+    
+    
+    
+    
     
     // Append a sequence to the end of a list
     public void append (LinkedList b) {
@@ -106,6 +112,56 @@ public class LinkedList {
         next.tail = b.first;
         
     }
+    
+    
+    public void push(int item) {
+        if (this.first == null) {
+            this.first = new Cell(item, null);
+        } else {
+            Cell newCell = new Cell(item, null);
+            Cell next = this.first;
+            while (next.tail != null) {
+                next = next.tail;
+            }
+            next.tail = newCell;
+        }
+    }
+    
+    public void pop() {
+        if (this.first == null) return;
+        if (this.first.tail == null) {  //if there is only ONE cell, what do?
+            this.first = null;
+            return;
+        } else {
+            Cell previous = this.first;         // 1 ->         2 ->      null
+            Cell next = this.first.tail;
+        
+            while (next.tail != null) {
+                previous = next;
+                next = next.tail;
+            }
+            //pop the cell (previous)
+            previous.tail = null;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    private class Cell {
+        int head;
+        Cell tail;
+        
+        Cell(int val, Cell tl) {
+            head = val;
+            tail = tl;
+        }
+    }
+}
+
     
     
     
