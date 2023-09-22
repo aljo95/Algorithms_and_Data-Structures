@@ -8,14 +8,12 @@ public class LinkedList {
     // Constructor to generate a list with values from 0 to n
     LinkedList(int n) {
         Cell last = null;
-        for (int i = 0; i < n; i++) {       //last = (0, null)
-            last = new Cell(i, last);       //last = (1, tl=(0, null))
-        }                                   //last = (2, tl=(1, tl=(0, null)))  
-        first = last;                       //first = (2, tl=(1, tl=(0, null)))  
+        for (int i = 0; i < n; i++) {  
+            last = new Cell(i, last); 
+        }                              
+        first = last;    
     }
-
     
-    //////////////////////////////////////////////////
     // Method to display number n list cell's value
     public int getValue(int n) {
         int count = 0;
@@ -28,10 +26,7 @@ public class LinkedList {
         return next.head;
     }
     
-    
-    
-    
-    // ADD ITEM AS THE FIRST CELL IN LIST
+    // Add item as first cell in list
     public void add(int key) {
         if (this.first == null) {
             this.first = new Cell(key, null);
@@ -42,7 +37,7 @@ public class LinkedList {
         }
     }
     
-    // RETURN LENGTH OF LIST
+    // Return length of list
     public int length() {
         int count = 0;
         Cell next = this.first;
@@ -55,17 +50,8 @@ public class LinkedList {
         }
         return count;
     }
-    /*
-    public int length() {
-        int count = 0;
-        LinkedList next = this;
-        while (next != null) {
-            count++;
-            next = next.first.tail;
-        }
-    }*/
     
-    // SEARCH THROUGH LIST FOR A CELL WITH SPECIFIC VALUE
+    // Search through list for a cell with specific value 
     public boolean search(int item) {
         Cell next = this.first;
         while (next != null) {
@@ -75,12 +61,9 @@ public class LinkedList {
         return false;
     }
     
-    
-    
-    
-    // DELETE A CELL
+    // Delete a cell by its int value (item)
     public void remove(int item) {
-        Cell next = this.first.tail;       // [1 > 2 > 3]
+        Cell next = this.first.tail; 
         Cell previous = this.first; 
         
         if (previous.head == item) {
@@ -98,10 +81,6 @@ public class LinkedList {
         }
     }
     
-    
-    
-    
-    
     // Append a sequence to the end of a list
     public void append (LinkedList b) {
         Cell cellToAppend = b.first;
@@ -112,7 +91,6 @@ public class LinkedList {
         next.tail = b.first;
         
     }
-    
     
     public void push(int item) {
         if (this.first == null) {
@@ -129,11 +107,11 @@ public class LinkedList {
     
     public void pop() {
         if (this.first == null) return;
-        if (this.first.tail == null) {  //if there is only ONE cell, what do?
+        if (this.first.tail == null) { 
             this.first = null;
             return;
         } else {
-            Cell previous = this.first;         // 1 ->         2 ->      null
+            Cell previous = this.first; 
             Cell next = this.first.tail;
         
             while (next.tail != null) {
@@ -145,28 +123,47 @@ public class LinkedList {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    private class Cell {
-        int head;
-        Cell tail;
+    public void unlink(Cell c) {        //special case if c is first
+        Cell previous = this.first;
+        Cell next = this.first;
         
-        Cell(int val, Cell tl) {
-            head = val;
-            tail = tl;
+        while(next != null) {
+            if (next == c) {
+                if (next == this.first) {
+                    this.first = next.tail;
+                    return;
+                } else {
+                    previous.tail = next.tail;
+                    return;
+                }
+            }
+            previous = next;
+            next = next.tail;
         }
     }
-}
-
     
+    public void insertCell(Cell c) {
+        Cell next = this.first;
+        if (this.first == null)
+            this.first = c;
+        else {
+            this.first = c;
+            c.tail = next;
+        }
+    }
     
+    public Cell selectCell(int indx) {
+        int count = 0;
+        Cell c = this.first;
+        
+        while(count != indx) {
+            c = c.tail;
+            count++;
+        }
+        return c;
+    }
     
-    
-    private class Cell {
+    public class Cell {
         int head;
         Cell tail;
         
