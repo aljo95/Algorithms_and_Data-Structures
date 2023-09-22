@@ -88,7 +88,7 @@ public class Main {
         
         
         
-            for (int sizes = 100; sizes <= 2000; sizes += 100) {
+        for (int sizes = 100; sizes <= 2000; sizes += 100) {
             
             LinkedList benchList = new LinkedList(0);
             LinkedList.Cell[] cellArray = new LinkedList.Cell[sizes];
@@ -124,7 +124,6 @@ public class Main {
                 
             }
             System.out.println(sizes + " " + min);
-            
         }  
     }
 }
