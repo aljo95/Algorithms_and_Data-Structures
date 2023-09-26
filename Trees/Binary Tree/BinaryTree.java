@@ -1,7 +1,9 @@
 
 package com.mycompany.binarytree;
 
-public class BinaryTree {
+import java.util.Iterator;
+
+public class BinaryTree implements Iterable<Integer> {
     
     Node root;
     
@@ -16,6 +18,11 @@ public class BinaryTree {
         else {
             root.add(key, value);
         }
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return new TreeIterator(this.root);
     }
     
     
@@ -37,10 +44,10 @@ public class BinaryTree {
         
         private void add(Integer key, Integer value) {      //called with 1, 1
             
-            System.out.println("------------");
-            System.out.println(this.key);
-            System.out.println(this.value);
-            System.out.println("------------");
+            //.out.println("------------");
+            //System.out.println("this=" + this.key + " current=" + key);
+            //System.out.println("this=" + this.value + " current=" + value);
+            //System.out.println("------------");
             
             if (this.key == key) {
                 this.value = value;
@@ -52,31 +59,25 @@ public class BinaryTree {
                 else
                     this.left = new Node(key, value);
             } else {    //if this.key < key
-                if (this.right != null)
+                if (this.right != null) 
                     this.right.add(key, value);
                 else
                     this.right = new Node(key, value);
             }
         }
     }
+        
+    //Search after key, return it's value (was key before makes no sense)
+    public Integer lookup(Integer key) {
+        Node current = this.root;
+        while(current != null) {
+            if(current.key == key) 
+                return current.key;
+            if(current.key < key)
+                current = current.right;
+            else //if current.key > key
+                current = current.left;
+        }
+        return null;    //Integer return type instead of int
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

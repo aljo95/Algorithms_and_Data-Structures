@@ -5,16 +5,28 @@ public class Main {
 
     public static void main(String[] args) {
         
-        BinaryTree testTree = new BinaryTree();
-        testTree.add(0, 0);
-        testTree.add(1, 1);
-        testTree.add(2, 2);
+        BinaryTree tree = new BinaryTree();
+        tree.add(5,105);
+        tree.add(2,102);
+        tree.add(7,107);
+        tree.add(1,101);
+        tree.add(8,108);
+        tree.add(6,106);
+        tree.add(3,103);
+
         
-        System.out.println(testTree.root.key);
-        System.out.println(testTree.root.value);
+        for (int i : tree) {
+            System.out.println("value: " + i);
+        }
         
-        System.out.println(testTree.root.left);
-        //System.out.println(testTree.root.right.key);
+        
+        
+        // LOOKUP BENCHMARKS!
+        
+        int res = tree.lookup(7);
+        int res2 = tree.lookup(3);
+        int res3 = tree.lookup(5);
+        System.out.println(res + " " + res2 + " " + res3);      // 7 3 5
         
         
         
