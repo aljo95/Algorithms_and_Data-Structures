@@ -71,9 +71,7 @@ public class Stack<T> {
         }
     }
     public boolean emptyCheck() {
-        if (pointer == -1) return false;
-        
-        return true;
+        return pointer == -1 ? true: false;
     }
 }
 
