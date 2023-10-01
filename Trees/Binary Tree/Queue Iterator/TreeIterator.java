@@ -3,7 +3,6 @@ package com.mycompany.treewithqueue;
 
 import com.mycompany.treewithqueue.BinaryTree.Node;
 import com.mycompany.treewithqueue.Queue;
-//import com.mycompany.binarytree.Stack;
 import java.util.Iterator;
 
 public class TreeIterator implements Iterator<Integer> {
@@ -31,10 +30,10 @@ public class TreeIterator implements Iterator<Integer> {
     @Override
     public Integer next() {
         
-        next = queue.remove();                                                          //          10
-                                                                                        //      5       30
-        if (next.currentNode.left != null) queue.add(next.currentNode.left);            //                 40
-        if (next.currentNode.right != null) queue.add(next.currentNode.right);          //               35
+        next = queue.remove();                                                        
+                                      
+        if (next.currentNode.left != null) queue.add(next.currentNode.left);
+        if (next.currentNode.right != null) queue.add(next.currentNode.right); 
     
         return next.currentNode.value;
     }
@@ -43,4 +42,3 @@ public class TreeIterator implements Iterator<Integer> {
         throw new UnsupportedOperationException();
     }
 }
-
