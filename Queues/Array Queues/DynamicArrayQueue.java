@@ -6,25 +6,20 @@ public class ArrayQueue {
     int k = 0;
     int i = 0;
     int n = length;
-    //boolean firstAdd = true;
     
     public ArrayQueue() {
         qArr = new Integer[this.length];
     }
     
     public void add(int addValue) {
-        
         qArr[k] = addValue;
-        k++;                           // DONT NEED THIS on k, or i for example?
+        k++;
         k = k % n;      
         
-        //firstAdd = false;
-        
         //if true then make new array
-        if (k == i) {           // WE WANT TO PUT IT "AFTER INCREMENTED" WHICH WILL SOLVE THE ISSUES IN Main.java 
+        if (k == i) { 
             doubleArraySize();
         }
-        
     }
     
     public Integer remove() {
@@ -38,13 +33,8 @@ public class ArrayQueue {
         i = i % n;
         return returnValue;
     }
-    
-    
-    
-    
 
     private void doubleArraySize() {
-       
         length = this.qArr.length*2;
         
         Integer[] newArr = new Integer[length];
@@ -55,12 +45,10 @@ public class ArrayQueue {
             indx++;
         }
         
-        
         for (int l = 0; l<k; l++) {
             newArr[indx] = qArr[l];
             indx++;
         }
-            
             
         //this.qArr = new Integer[this.length];
         this.qArr = newArr;
