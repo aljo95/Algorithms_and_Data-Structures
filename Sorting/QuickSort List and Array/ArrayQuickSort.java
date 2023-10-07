@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class ArrayQuickSort {
@@ -8,76 +11,106 @@ public class ArrayQuickSort {
         arr[j] = temp;
     }
 
-    public static int partition(int[] array, int l, int h) {
+    public static int partition(int[] array, int lo, int hi) {
 
-        int pivot = array[l];
-        //System.out.println("Pivot: " + pivot);
+        int pivot = array[lo];
 
-        int indx = h;
-
-        for (int i=h; i>l; i--) {     // int i = l+1 or just i = l ?
-            if (pivot < array[i]) {
-                swap(array, i, indx);
-                indx--;
+        int indx = lo+1;
+        for (int i=lo+1; i<=hi; i++) {
+            if (array[i] < pivot) {
+                swap(array, indx, i);
+                indx++;
             }
-            
         }
-        swap(array, l, indx);
-
         
-
+        swap(array, lo, indx-1);
         return indx;
 
     }
 
-    public static void sort(int[] array, int l, int h) {
+    public static void sort(int[] array, int lo, int hi) {
 
-        if (h > l) {
-            
-            int mid = partition(array, l, h);
-            //System.out.println("mid: " + mid);
+        if (hi > lo) {
+            int mid = partition(array, lo, hi);
 
-            sort(array, l, mid-1);
-            sort(array, mid+1, h);
-
+            sort(array, lo, mid-1);
+            sort(array, mid, hi);
         }
-
-
-
     }
-
-
-
-
-
+    
+    
+    public static int[] unsortedUniques(int n) {
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<n; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        
+        int[] returnArr = new int[n];
+        
+        for (int i=0; i<n; i++) {
+            returnArr[i] = list.get(i);
+        }
+        return returnArr;
+    }
 
     public static void main(String[] args) {
         
-        int[] arrUnsorted = {3, 1, 4, 9, 5, 2};
+        double resArr = 0;
+        double resList = 0;
+        
+	// Benchmarking array vs list quicksort
+        for (int i = 100; i <= 1600; i=i+100) {
+            
+            resArr = 0;
+            resList = 0;
+            
+            for (int k=0; k<1000; k++) {
+                ListQuickSort list = new ListQuickSort();
+                int[] unsorted = unsortedUniques(i);
 
-        sort(arrUnsorted, 0, arrUnsorted.length-1);
+                for (int j=0; j<unsorted.length; j++) {
+                    list.add(unsorted[j]);
+                }
 
-        for (int i=0; i<arrUnsorted.length; i++) {
-            System.out.println(arrUnsorted[i]);
+                long t0 = System.nanoTime();
+                sort(unsorted, 0, unsorted.length-1);
+                long t1 = System.nanoTime();
+                resArr += (t1-t0);
+                //System.out.print(resArr);
+
+                long t2 = System.nanoTime();
+                list.sort(list.head, list.end);
+                long t3 = System.nanoTime();
+                resList += (t3-t2);
+                //System.out.print(" " + resList);
+                //System.out.println();
+            }
+            resArr = (resArr/1000);
+            resList = (resList/1000);
+            System.out.print(i + " " + resArr + " " + resList + "\n");
+            
         }
 
 
-        System.out.println("-----------------------");
+        System.out.println("-------- ONLY ARRAY ----------");
 
-        int[] gigaArr = new int[99];
-        Random rnd = new Random();
+        // Checking runtime for larger values for array quicksort
+        for (int i = 10000; i <= 100000; i=i+10000) {
+            resArr = 0;
 
-        for (int i=0; i<99; i++) {
-            gigaArr[i] = rnd.nextInt(1000);
+            for (int k=0; k<1000; k++) {
+
+                int[] unsorted = unsortedUniques(i);
+                long t0 = System.nanoTime();
+                sort(unsorted, 0, unsorted.length-1);
+                long t1 = System.nanoTime();
+                resArr += (t1-t0);
+
+            }
+            resArr = (resArr/1000)/1000; // /1000 to get microseocnds xD
+            System.out.println(i + " " + resArr);
         }
-
-        sort(gigaArr, 0, gigaArr.length - 1);
-
-        for (int i=0; i<gigaArr.length; i++) {
-            System.out.print(gigaArr[i] + " ");
-        }
-
-
     }
-    
 }
