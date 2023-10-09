@@ -2,6 +2,7 @@
  * @param {...(null|boolean|number|string|Array|Object)} args
  * @return {number}
  */
+/*
 var argumentsLength = function(...args) {
 
     let count = 0;
@@ -10,10 +11,13 @@ var argumentsLength = function(...args) {
     }
     return count;
 };
+*/
+
+let argumentsLength2 = (...args) => args['0'].length;
 
 
 args1 = [{}, null, "3", 1, true, [1, 2]];
-console.log(argumentsLength(args1));
+console.log(argumentsLength2(args1));
 
 
 
