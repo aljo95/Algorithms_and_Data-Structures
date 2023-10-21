@@ -22,44 +22,22 @@ public class Zip {
     }
     public Zip(String file) {
     data = new Node[100000];
-    /********/
     keys = new Integer[10000];
-    /********/
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-        //try (BufferedReader br = new BufferedReader(new FileReader(file , StandardCharsets.UTF_8))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
                 Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
                 data[code] = new Node(code, row[1], Integer.valueOf(row[2]));
-                /********/
                 keys[i++] = code;
-                /********/
             }
             max = i-1;
         } catch (Exception e) {
             System.out.println(" file " + file + " not found");
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    public Boolean lookup(String zip)  {
-        int zipNumber = Integer.parseInt(zip.replaceAll("\\s",""));
-        return zipNumber >= 0 && zipNumber < 100000 && data[zipNumber] != null;
-    }*/
-    
-    
-        
-        // CHANGE INTEGER > BOOLEAN XD
+
     public int lookup(int[] dataArr, String zip) {
         int mod = dataArr.length;
         int zipCode = Integer.valueOf(zip.replaceAll("\\s", ""));
@@ -73,16 +51,10 @@ public class Zip {
             hash++;
             count++;
         }
-        
         return count; //return false;
     }
     
-    
-    
-    
-    public int[] collisions(int mod) {  //mod = 20 000
-        
-        System.out.println("MAX: " + max);
+    public int[] collisions(int mod) {
         
         int[] data = new int[mod];
         
@@ -98,10 +70,6 @@ public class Zip {
                 data[hash] = keys[i];
             }
         }
-        
         return data;
     }
-    
-    
-    
 }
