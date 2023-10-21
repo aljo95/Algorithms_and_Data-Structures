@@ -23,7 +23,6 @@ public class Zip {
     public Zip(String file) {
     data = new Node[10000];
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-        //try (BufferedReader br = new BufferedReader(new FileReader(file , StandardCharsets.UTF_8))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
@@ -36,20 +35,7 @@ public class Zip {
             System.out.println(" file " + file + " not found");
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //zip is just number, ex: 111 15, but its in a string!
+
     public String linearLookup(String zip) {
         Integer zipNumber = Integer.parseInt(zip.replaceAll("\\s",""));
         Integer i=0;
@@ -62,7 +48,6 @@ public class Zip {
         return "No zip matching the search query was found";
     }
     
-    //same but with binary search
     public String binaryLookup(String zip) {
         Integer zipNumber = Integer.parseInt(zip.replaceAll("\\s",""));
         Integer min = 0;
