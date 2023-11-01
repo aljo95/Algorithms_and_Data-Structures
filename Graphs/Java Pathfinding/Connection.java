@@ -1,5 +1,4 @@
 
-
 public class Connection {
     
     City city ;
@@ -9,5 +8,4 @@ public class Connection {
         this.city = city;
         this.distance = distance;
     }
-
 }
