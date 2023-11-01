@@ -1,23 +1,16 @@
 
-
 public class City {
     
     String name ;
-    
-    //hashed name
-    
     int p = 0;
     Connection [] neighbours ;
-    
     
     public City(String name) {
         this.name = name;
         this.neighbours = new Connection[1];
     }
     
-    
-    
-    
+    // Create connections between nodes (cities)
     public void connect(City nxt, int dst) {
         
         if (this.p > 0) {
@@ -36,13 +29,7 @@ public class City {
             }
         }
         
-        
-        
         this.neighbours[p] = new Connection(nxt, dst);
         this.p++;
-        
-        
-        //this.neighbours[this.neighbours.length-1] = new Connection(nxt, dst);
     }
-    
 }
