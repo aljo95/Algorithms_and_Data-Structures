@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 
 
+
 public class Map {
     
-    //private City[] cities;
     public City[] cities;
     private final int mod = 541;
     int collisionCount = 0;
@@ -16,7 +16,6 @@ public class Map {
         
         cities = new City[mod];
         
-        //try (BufferedReader br = new BufferedReader(new FileReader(file))) {
         try (BufferedReader br = new BufferedReader( new InputStreamReader(new FileInputStream(file), "UTF-8"))) { 
             String line;
             while ((line = br.readLine()) != null) {
@@ -42,30 +41,19 @@ public class Map {
     
     public City lookup(String city) {
         
-        //hash name first!
         Integer hashValue = hash(city);
         
-        
         while(cities[hashValue] != null) {
-            
             if ((cities[hashValue].name).equals(city)) {
                 collisionCount++;
                 return cities[hashValue];
             }
-            
             hashValue++;
         }
-        
-        
         cities[hashValue] = new City(city);
         return cities[hashValue];
     }
-    
-    
-    
-    
-        // ex: "Lund" 
-        // 76 -> 192 + 117 -> 382 + 110 -> 104 + 100
+
     private Integer hash(String name) {
         int hash = 0;
         for (int i = 0; i < name.length(); i++) {
@@ -73,6 +61,4 @@ public class Map {
         }
         return hash % mod;
     }
-
-    
 }
