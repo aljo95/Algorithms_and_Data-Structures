@@ -11,7 +11,6 @@ public class Paths {
     
     public Integer shortest(City from, City to) {
         
-        
         if (from == to) {
             return 0;
         }
@@ -22,8 +21,6 @@ public class Paths {
             return null;
         }
 
-        
-        
         path[sp++] = from;
         for (int i = 0; i < from.neighbours.length; i++) {
             if (from.neighbours[i] != null) {
@@ -45,5 +42,4 @@ public class Paths {
         path[sp--] = null;
         return shrt;
     }
-    
 }
