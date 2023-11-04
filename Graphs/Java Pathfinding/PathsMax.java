@@ -11,7 +11,6 @@ public class PathsMax {
     
     public Integer shortest(City from, City to) {
         
-        
         if (from == to) {
             return 0;
         }
@@ -23,8 +22,6 @@ public class PathsMax {
             return null;
         }
 
-        
-        
         path[sp++] = from;
         for (int i = 0; i < from.neighbours.length; i++) {
             if (from.neighbours[i] != null) {
@@ -34,7 +31,6 @@ public class PathsMax {
                 if (max != null && conn.distance > max)
                     continue;
                 
-                
                 Integer temp = shortest(conn.city, to);
                 if (temp != null) {
                     Integer shorter = conn.distance;
@@ -43,13 +39,11 @@ public class PathsMax {
                         shorter += temp;
                     }
                     
-                    
                     if (shrt == null || shrt > shorter) {
                         shrt = shorter;
                         if (max == null || max > shrt) {
                             max = shrt;
                         }
-                        
                     } 
                 }
             }
@@ -58,12 +52,4 @@ public class PathsMax {
         //max = shrt;
         return shrt;
     }
-
-    
-    
-    
-    
-    
-    
 }
-
