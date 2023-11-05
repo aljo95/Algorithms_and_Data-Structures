@@ -40,13 +40,11 @@ public class Naive {
         
         Map map = new Map("src/trains.csv");
         
-        //String from = args[0];
-        //String to = args[1];
+        String from = args[0];
+        String to = args[1];
         Integer max = 800;
         
         System.out.println("from: " + from + " to: " + to + " and max is: " + max);
-        
-
         
 	/* Benchmark 1. Naive version */
         long t0 = System.nanoTime();
@@ -54,8 +52,6 @@ public class Naive {
         long time = (System.nanoTime() - t0)/1_000_000;
         System.out.println("shortest: " + dist + " min (" + time + " ms)");
         
-
-
         /* Benchmark 2. Paths version */
         Integer dist = 0;
         double result = 0;
@@ -70,8 +66,6 @@ public class Naive {
         result = (result/100);
         System.out.println("Path distance: " + dist);
         System.out.println("TIME IS: " + result);
-        
-
         
 	/* Benchmark 3. PathsMax version */
         dist = 0;
